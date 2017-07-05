@@ -1,0 +1,16 @@
+{
+  "name": "ntalk",
+  "description": "Node talk - Fazendo a primeira paradinha",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "body-parser": ">1.0.0",
+    "cookie-parser": ">1.0.1",
+    "ejs": ">0.8.5 ",
+    "express": ">4.2.0",
+    "express-load": "^1.1.16",
+    "express-session": "^1.15.3",
+    "method-override": "^2.3.9",
+    "socket.io": "^2.0.3"
+  }
+}
