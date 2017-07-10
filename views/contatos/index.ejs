@@ -15,6 +15,7 @@ placeholder="E-mail">
 <tr>
 <th>Nome</th>
 <th>E-mail</th>
+<th>Status</th>
 <th>Ação</th>
 </tr>
 </thead>
@@ -24,8 +25,13 @@ placeholder="E-mail">
 <td><%- contato.nome %></td>
 <td><%- contato.email %></td>
 <td>
-<a href="/contato/<%- index %>">Detalhes</a>
-<a	href="/chat" id="chat_<%- contato.email %>">Conversar</a>
+    <span id="notify_<%- contato.email %>" class="label">Offline</span>
+</td>
+<td>
+<a href="/contato/<%- contato._id %>">Detalhes</a>
+<a href="/chat" id="chat_<%- contato.email %>">
+Conversar
+</a>
 </td>
 </tr>
 <% }) %>
