@@ -5,7 +5,9 @@
   "private": false,
   "dependencies": {
     "body-parser": ">1.0.0",
+    "compression": "^1.6.2",
     "cookie-parser": ">1.0.1",
+    "csurf": "^1.9.0",
     "ejs": ">0.8.5 ",
     "express": ">4.2.0",
     "express-load": "^1.1.16",
@@ -13,5 +15,8 @@
     "method-override": "^2.3.9",
     "mongoose": "^4.11.1",
     "socket.io": "^2.0.3"
+  },
+  "scripts": {
+    "start": "SET DEBUG=* && node cluster >> app.log"
   }
 }

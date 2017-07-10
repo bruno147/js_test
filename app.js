@@ -16,6 +16,7 @@ var express = require('express')
 global.db = mongoose.connect('localhost/ntalk');
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.use(compression());
 app.use(cookie);
 app.use(expressSession({
   secret: SECRET,
@@ -27,8 +28,14 @@ app.use(expressSession({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
-app.use(express.static(__dirname + '/public'));
-
+app.use(express.static(__dirname + '/public', {
+  maxAge: 36000000
+}));
+app.use(csurf());
+app.use(function(req, res, next) {
+  res.locals._csrf = req.csrfToken();
+  next();
+});
 io.use(function(socket, next) {
   var data = socket.request;
   cookie(data, {}, function(err){

@@ -5,6 +5,7 @@
 </header>
 <section>
 <form action="/entrar" method="post">
+<input type="hidden" name="_csfr" value="<%- _csrf %>">
 <input type="text" name="usuario[nome]"
 placeholder="Nome">
 <br>
