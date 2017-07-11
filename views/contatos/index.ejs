@@ -39,6 +39,24 @@ Conversar
 </tbody>
 </table>
 </section>
+
+<table>
+    <thead>
+    <tr>
+        <th>Sala</th>
+        <th>Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%- salas.nome %></td>
+            <td><a href="/chat" id="chat_<%- salas.nome %>">Entrar</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</section>
+
 <% include notify_script %>
 <% include ../exit %>
 <% include ../footer %>

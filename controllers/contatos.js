@@ -3,9 +3,10 @@ module.exports = function(app) {
     var ContatosController = {
         index: function(req, res) {
             var _id = req.session.usuario._id;
+            var salas = {nome: "birl"};
             Usuario.findById(_id, function(erro, usuario) {
-                var contatos = usuario.contatos;            
-                var resultado = {contatos: contatos};
+                var contatos = usuario.contatos;         
+                var resultado = {contatos: contatos, salas: salas};
                 res.render('contatos/index', resultado);
             });
         },

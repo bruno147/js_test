@@ -5,12 +5,16 @@ var express = require('express')
   , cookieParser = require('cookie-parser')
   , expressSession = require('express-session')
   , methodOverride = require('method-override')
+  , compression = require('compression')
+  , csurf = require('csurf')
   , error = require('./middlewares/error')
+  , redisAdapter = require('socket.io-redis')
+  , redisStore = require('connect-redis')(expressSession)
   , app = express()
   , server = require('http').Server(app)
   , io = require('socket.io')(server)
   , cookie = cookieParser(SECRET)
-  , store = new expressSession.MemoryStore()
+  , store = new redisStore({prefix: KEY})
   , mongoose = require('mongoose')
 ;
 global.db = mongoose.connect('localhost/ntalk');
@@ -50,7 +54,7 @@ io.use(function(socket, next) {
     })
   })
 })
-
+io.adapter(redisAdapter({host: 'localhost', port: 6379}));
 load('models')
   .then('controllers')
   .then('routes')
