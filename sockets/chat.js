@@ -21,7 +21,9 @@ module.exports = function(io) {
                 var timestamp = new Date().toString()
                   , md5 = crypto.createHash('md5');
                 sala = md5.update(timestamp).digest('hex');
+                console.log("CRIANDO");
             }
+            console.log(sala);
             session.sala = sala;
             client.join(sala);
             var msg = "<b>"+usuario.nome+"</b> entrou. <br>";
@@ -36,7 +38,8 @@ module.exports = function(io) {
         client.on('send-server', function(msg) {
             var sala = session.sala
               , data = {email: usuario.email, sala: sala};
-            msg = "<b>"+usuario.nome+":<b> "+msg+"<br>";
+			msg = '{"usuario": "' + usuario.nome + '", "mensagem": "' + msg + '", "data": "' + new Date().toLocaleDateString() + '", "hora": "' + new Date().toLocaleTimeString() + '"}';
+            //msg = "<b>"+usuario.nome+":<b> "+msg+"<br>";
             redis.lpush(sala, msg);
             client.broadcast.emit('new-message', data);
             sockets.in(sala).emit('send-client', msg);
